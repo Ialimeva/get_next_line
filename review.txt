@@ -1,0 +1,27 @@
+Algorithm:
+1- Read the file and take bytes from it
+2- Extract the line where newline was spotted
+3- The read with the buffer size may not have a new line
+    so no new line to extract
+4- So read until we find a new line to extract from
+    4.1 if a newline was found
+            then extract that line and return it
+    4.2 if no newline was found
+            which mean we are at the end of the file and have nothing to read anymore
+            so return the whole file
+5- After a newline was found
+    5.1 there may be rest of text after that newline if buffer is bigger than newline index
+            keep that rest and add it to the next read
+    5.2 the new line is at the end of the file
+            return that line
+6- For the rest
+    6.1 If there is bytes to read
+        Add that rest to another read until newline and redo all of that
+    6.2 If there is nothing to read anymore
+        instead of reading, use the rest as a remplacement for the file and redo everything again
+7- No rest anymore
+    which mean extracted line  == rest, resturn that line and free rest and end of algo
+
+buffer_read : 1 malloc, free if 0 or less bytes readed from file
+empty_leftover : (buffer_read, leftover, fd)
+    -
